@@ -6,9 +6,14 @@ app.use(express.json({ extended: false}));
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-    res.status(200).json({msg: "This is root" });
+    res.status(200).json({msg: "This is axiom social app" });
 });
 
-app.listen(PORT, () => {()
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/users', require('./routes/users'))
+app.use('/api/posts', require('./routes/posts'))
+
+
+app.listen(PORT, () => {
     console.log(`Server has been started\nhttp://localhost:${PORT}`);
 });
